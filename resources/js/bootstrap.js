@@ -1,19 +1,3 @@
-// resources/js/bootstrap.js
-/**
- * Import moment js
- */
-import moment from 'moment';
-window.moment = moment;
-
-require('tempusdominus-bootstrap-4');
-$('.datetimepicker').datetimepicker({
-    icons: {
-        // Font Awesome 5には「fa-clock-o」がなくなっているので指定する
-        time: 'far fa-clock'
-    },
-    format: 'YYYY-MM-DD'
-});
-
 window._ = require('lodash');
 
 /**
@@ -27,7 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-} catch (e) { }
+} catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
