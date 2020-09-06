@@ -1,56 +1,67 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layout')
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('header')
+<div>
+  <h1>
+    <i class="fas fa-align-justify"></i> Task
+    <a class="btn btn-success float-right" href="{{ route('tasks.create') }}"><i class="fas fa-plus"></i> Create</a>
+  </h1>
+</div>
+@endsection
 
-  <!-- CSRF Token -->
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content')
+<div class="row">
+  <div class="col-md-12">
+    @if($tasks->count())
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr>
+          <th class="text-center">#</th>
+          <th>Subject</th>
+          <th>Description</th>
+          <th>Due Date</th>
+          <th>Completed</th>
+          <th class="text-right">OPTIONS</th>
+        </tr>
+      </thead>
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+      <tbody>
+        @foreach($tasks as $task)
+        <tr>
+          <td class="text-center"><strong>{{$task->id}}</strong></td>
 
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
+          <td>{{$task->subject}}</td>
+          <td>{{$task->description}}</td>
+          <td>{{$task->due_date}}</td>
+          <td><input type="checkbox" disabled @if( $task->completed ) checked @endif/></td>
 
-  <!-- Fonts -->
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+          <td class="text-right">
+            <a class="btn btn-sm btn-primary" href="{{ route('tasks.show', $task->id) }}">
+              <i class="fas fa-eye"></i> View
+            </a>
+            <a class="btn btn-sm btn-warning" href="{{ route('tasks.edit', $task->id) }}">
+              <i class="fas fa-edit"></i> Edit
+            </a>
+            <form action="{{ route('tasks.destroy', $task->id) }}" method="POST" style="display: inline;"
+              onsubmit="return confirm('Delete? Are you sure?');">
+              {{csrf_field()}}
+              <input type="hidden" name="_method" value="DELETE">
 
-  <!-- Styles -->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-
-<body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="{{route('tasks.index')}}">Tasks</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="container">
-    @if(session('message'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-      </button>
-      {{@session('message')}}
-    </div>
+              <button type="submit" class="btn btn-sm btn-danger">
+                <i class="fas fa-trash"></i> Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+    {!! $tasks->render() !!}
+    @else
+    <h3 class="text-center alert alert-info">Empty!</h3>
     @endif
 
-    @yield('header')
-    @yield('content')
   </div>
+</div>
 
-  @yield('scripts')
-</body>
-
-</html>
+@endsection
