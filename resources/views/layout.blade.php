@@ -19,37 +19,112 @@
 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <style>
+    html, body {
+      background-color: #fff;
+      color: #636b6f;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 200;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .full-height {
+      height: 100vh;
+    }
+
+    .flex-center {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+    }
+
+    .position-ref {
+      position: relative;
+    }
+
+    .top-right {
+      position: absolute;
+      right: 60px;
+      top: 18px;
+    }
+
+    .content {
+      text-align: center;
+    }
+
+    .title {
+      font-size: 84px;
+    }
+
+    .links > a {
+      color: #636b6f;
+      padding: 0 25px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .1rem;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .m-b-md {
+      margin-bottom: 30px;
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+  </style>
 </head>
 
 <body>
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-    <a class="navbar-brand" href="#">{{ config('app.name', 'Laravel') }}</a>
+  <nav class="navbar navbar-expand-lg mb-4">
+    <div class="navbar-brand links">
+      <a href="#">{{ config('app.name', 'yps1 task#6') }}</a>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="{{route('tasks.index')}}">Tasks</a></li>
+        @if (Route::has('login'))
+          <div class="top-right links">
+            @auth
+              <div class="dropdown">
+                
+              <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ $auths->name ?? 'Menu' }}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{{ url('/tasks') }}">Tasks</a>
+                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+              </div>
+            @else
+              <a href="{{ route('login') }}">Login</a>
+              @if (Route::has('register'))
+                <a href="{{ route('register') }}">Register</a>
+              @endif
+            @endauth
+            </div>
+          </div>
+        @endif
       </ul>
     </div>
   </nav>
+    <div class="container">
+      @if(session('message'))
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{@session('message')}}
+      </div>
+      @endif
 
-  <div class="container">
-    @if(session('message'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {{@session('message')}}
+      @yield('header')
+      @yield('content')
     </div>
-    @endif
-
-    @yield('header')
-    @yield('content')
-  </div>
-
   @yield('scripts')
 </body>
 

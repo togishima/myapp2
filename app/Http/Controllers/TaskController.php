@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,8 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::paginate();
-        return view('tasks.index', compact('tasks'));
+        $auths = Auth::user();
+        return view('tasks.index', ['tasks' => $tasks , 'auths' => $auths]);
     }
 
     /**
