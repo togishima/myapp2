@@ -2,7 +2,7 @@
 
 @section('header')
 <div class="page-header">
-  <h1><i class="fas fa-plus"></i> Task / Create </h1>
+  <h1><i class="fas fa-plus"></i> タスクの新規作成 </h1>
 </div>
 @endsection
 
@@ -16,15 +16,15 @@
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
       <div class="form-group">
-        <label for="subject-field">Subject</label>
+        <label for="subject-field">件名</label>
         <input class="form-control" type="text" name="subject" id="subject-field" value="" />
       </div>
       <div class="form-group">
-        <label for="description-field">Description</label>
+        <label for="description-field">詳細</label>
         <textarea name="description" id="description-field" class="form-control" rows="3"></textarea>
       </div>
       <div class="form-group">
-        <label for="due_date-field">Due Date</label>
+        <label for="due_date-field">締切</label>
         <div class="input-group date datetimepicker" id="due_date" data-target-input="nearest">
           <input type="text" name="due_date"  id="due_date-field" class="form-control datetimepicker-input" data-target="#due_date" />
           <div class="input-group-append" data-target="#due_date" data-toggle="datetimepicker">
@@ -34,8 +34,8 @@
       </div>
 
       <div class="well well-sm">
-        <button type="submit" class="btn btn-primary">Create</button>
-        <a class="btn btn-link pull-right" href="{{ route('tasks.index') }}"><i class="fas fa-backward"></i> Back</a>
+        <button type="submit" class="btn btn-primary">新規作成</button>
+        <a class="btn btn-link pull-right" href="{{ route('tasks.index') }}"><i class="fas fa-backward"></i>戻る</a>
       </div>
     </form>
 

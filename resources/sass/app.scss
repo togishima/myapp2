@@ -1,3 +1,4 @@
+@charset 'utf-8';
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
@@ -6,3 +7,12 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//fontawesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/regular.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
+
+// Tempus Dominus
+@import '~tempusdominus-bootstrap-4/src/sass/tempusdominus-bootstrap-4-build';

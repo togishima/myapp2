@@ -20,10 +20,10 @@
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <style>
-    html, body {
+    html,body {
       background-color: #fff;
       color: #636b6f;
-      font-family: 'Nunito', sans-serif;
+      font-family: "Nunito", sans-serif;
       font-weight: 200;
       height: 100vh;
       margin: 0;
@@ -44,9 +44,7 @@
     }
 
     .top-right {
-      position: absolute;
-      right: 60px;
-      top: 18px;
+      padding-right: 3em;
     }
 
     .content {
@@ -62,7 +60,7 @@
       padding: 0 25px;
       font-size: 13px;
       font-weight: 600;
-      letter-spacing: .1rem;
+      letter-spacing: 0.1rem;
       text-decoration: none;
       text-transform: uppercase;
     }
@@ -74,43 +72,45 @@
     .nowrap {
       white-space: nowrap;
     }
+
+    .scroll {
+      overflow: scroll;
+    }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg mb-4">
+  <nav class="navbar mb-4">
     <div class="navbar-brand links">
       <a href="#">{{ config('app.name', 'yps1 task#6') }}</a>
     </div>
+    <!--
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav">
-        @if (Route::has('login'))
-          <div class="top-right links">
-            @auth
-              <div class="dropdown">
-                
-              <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ $auths->name ?? 'Menu' }}
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="{{ url('/tasks') }}">Tasks</a>
-                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
-              </div>
-            @else
-              <a href="{{ route('login') }}">Login</a>
-              @if (Route::has('register'))
-                <a href="{{ route('register') }}">Register</a>
-              @endif
-            @endauth
-            </div>
+    -->
+    @if (Route::has('login'))
+    <div class="top-right links">
+      @auth
+        <div class="dropdown">
+          <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ $auths->name ?? 'Menu' }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="{{ url('/tasks') }}">タスク管理</a>
+            <a class="dropdown-item" href="{{ route('logout') }}">ログアウト</a>
           </div>
-        @endif
-      </ul>
+        @else
+          <a href="{{ route('login') }}">ログイン</a>
+          @if (Route::has('register'))
+          <a href="{{ route('register') }}">新規登録</a>
+          @endif
+        @endauth
+      </div>
     </div>
+    @endif
   </nav>
     <div class="container">
       @if(session('message'))
