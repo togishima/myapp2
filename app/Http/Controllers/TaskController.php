@@ -45,7 +45,7 @@ class TaskController extends Controller
         $inputs = $request->all();
         Task::create($inputs);
 
-        return redirect()->route('tasks.index')->with('message', 'Task created successfully.');
+        return redirect()->route('tasks.index')->with('message', '新しいタスクを作成しました');
     }
 
     /**
@@ -83,7 +83,7 @@ class TaskController extends Controller
         if (!isset($inputs['completed'])) $inputs['completed]'] = false;
         $task->update($inputs);
 
-        return redirect()->route('tasks.index')->with('message', 'Task updated successfully');
+        return redirect()->route('tasks.index')->with('message', 'タスクの編集が完了しました');
     }
 
     /**
@@ -96,6 +96,6 @@ class TaskController extends Controller
     {
         $task->delete();
 
-        return redirect()->route('tasks.index')->with('message', 'Task deleted successfully');
+        return redirect()->route('tasks.index')->with('message', 'タスクを削除しました');
     }
 }
