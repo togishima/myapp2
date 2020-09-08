@@ -16,12 +16,12 @@
     <table class="table table-sm table-striped">
       <thead>
         <tr>
-          <th class="text-center">#</th>
-          <th>件名</th>
-          <th>詳細</th>
-          <th>締切</th>
-          <th class="nowrap">完了</th>
-          <th>操作</th>
+          <th class="nowrap">@sortablelink('id', '#')</th>
+          <th class="nowrap">件名</th>
+          <th class="nowrap">詳細</th>
+          <th class="nowrap">@sortablelink('due_date', '締切')</th>
+          <th class="nowrap">@sortablelink('completed', '完了')</th>
+          <th class="nowrap">操作</th>
         </tr>
       </thead>
 
