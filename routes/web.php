@@ -17,16 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//タスク
 Route:: resource('tasks', 'TaskController');
-
 Auth::routes(['verify'=>true]);
 
+//logout処理
 Route::get('logout', 'HomeController@getLogout')->name('logout');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
