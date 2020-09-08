@@ -19,6 +19,7 @@
           <th class="nowrap">@sortablelink('id', '#')</th>
           <th class="nowrap">件名</th>
           <th class="nowrap">詳細</th>
+          <th class="nowrap">@sortablelink('priority', '重要度')</th>
           <th class="nowrap">@sortablelink('due_date', '締切')</th>
           <th class="nowrap">@sortablelink('completed', '完了')</th>
           <th class="nowrap">操作</th>
@@ -32,6 +33,21 @@
 
           <td>{{$task->subject}}</td>
           <td>{{$task->description}}</td>
+          <td>
+            @switch($task->priority)
+              @case(1)
+                {{ '★☆☆' }}
+                @break
+              @case(2)
+                {{ '★★☆' }}
+                @break
+              @case(3)
+                {{ '★★★'}}
+                @break
+              @default
+                {{ '-' }}
+            @endswitch
+          </td>
           <td>{{$task->due_date}}</td>
           <td><input type="checkbox" disabled @if( $task->completed ) checked @endif/></td>
 

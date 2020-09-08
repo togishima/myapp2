@@ -49,4 +49,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function sendPasswordResetNotification($token) {
         $this->notify(new CustomResetPassword($token));
     }
+
+    public function task()
+    {
+        return $this->hasmany('App\Task');
+    }
 }

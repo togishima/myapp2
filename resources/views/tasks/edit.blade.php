@@ -27,6 +27,29 @@
           rows="3">{{ old('description', $task->description ) }}</textarea>
       </div>
       <div class="form-group">
+        <label for="priority-field">重要度</label>
+        <select name="priority" id="priority-field">
+          <option value>
+            @switch($task->priority)
+              @case(1)
+                {{ '★☆☆' }}
+                @break
+              @case(2)
+                {{ '★★☆' }}
+                @break
+              @case(3)
+                {{ '★★★'}}
+                @break
+              @default
+                {{ '※任意' }}
+            @endswitch          
+          </option>
+          <option value="3">★★★</option>
+          <option value="2">★★☆</option>
+          <option value="1">★☆☆</option>
+        </select>
+      </div>
+      <div class="form-group">
         <label for="due_date-field">締切</label>
         <div class="input-group date datetimepicker" id="due_date" data-target-input="nearest">
           <input type="text" name="due_date"  id="due_date-field" class="form-control datetimepicker-input" data-target="#due_date" value="{{ old('due_date', $task->due_date ) }}" />

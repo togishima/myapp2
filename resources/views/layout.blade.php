@@ -82,15 +82,8 @@
 <body>
   <nav class="navbar mb-4">
     <div class="navbar-brand links">
-      <a href="#">{{ config('app.name', 'yps1 task#6') }}</a>
+      <a href=" {{ url('/')}} ">{{ config('app.name', 'yps1 task#6') }}</a>
     </div>
-    <!--
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    -->
     @if (Route::has('login'))
     <div class="top-right links">
       @auth
@@ -121,7 +114,7 @@
         {{@session('message')}}
       </div>
       @endif
-
+      @include('error')
       @yield('header')
       @yield('content')
     </div>

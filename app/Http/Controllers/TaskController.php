@@ -17,11 +17,13 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $tasks = Task::sortable()->paginate(10);
         $auths = Auth::user();
-        return view('tasks.index', ['tasks' => $tasks , 'auths' => $auths]);
+        $tasks = Task::getSortableLinkWithPagination();
+
+        return view('tasks.index', ['tasks' => $tasks , 'auths' => $auths, ]);
     }
 
     /**
@@ -31,7 +33,8 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $user_id = Auth::id();
+        return view('tasks.create', ['user_id'=>$user_id, ]);
     }
 
     /**
@@ -95,7 +98,6 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         $task->delete();
-
         return redirect()->route('tasks.index')->with('message', 'タスクを削除しました');
     }
 }

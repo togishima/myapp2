@@ -14,6 +14,7 @@
 
     <form action="{{ route('tasks.store') }}" method="POST">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="user_id" value="{{ $user_id }}">
 
       <div class="form-group">
         <label for="subject-field">件名</label>
@@ -22,6 +23,15 @@
       <div class="form-group">
         <label for="description-field">詳細</label>
         <textarea name="description" id="description-field" class="form-control" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="priority-field">重要度</label>
+        <select name="priority" id="priority-field">
+          <option value>※任意</option>
+          <option value="3">★★★</option>
+          <option value="2">★★☆</option>
+          <option value="1">★☆☆</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="due_date-field">締切</label>

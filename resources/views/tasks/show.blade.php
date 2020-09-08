@@ -29,6 +29,22 @@
     <p>
       {{ $task->description }}
     </p>
+    <label>重要度</label>
+    <p>
+      @switch($task->priority)
+        @case(1)
+          {{ '★☆☆' }}
+          @break
+        @case(2)
+          {{ '★★☆' }}
+          @break
+        @case(3)
+          {{ '★★★'}}
+          @break
+        @default
+          {{ '※任意' }}
+      @endswitch 
+    </p>
     <label>締切</label>
     <p>
       {{ $task->due_date }}

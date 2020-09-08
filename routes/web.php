@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 //タスク
-Route:: resource('tasks', 'TaskController');
+Route::resource('tasks', 'TaskController');
 Auth::routes(['verify'=>true]);
 
 //logout処理
