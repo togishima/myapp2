@@ -93,6 +93,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item" href="{{ url('/tasks') }}">タスク管理</a>
+            <a class="dropdown-item" href="{{ url('/calendar') }}">カレンダー</a>
             <a class="dropdown-item" href="{{ route('logout') }}">ログアウト</a>
           </div>
         @else

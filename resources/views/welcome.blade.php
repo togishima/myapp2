@@ -1,9 +1,5 @@
 @extends('layout')
 
-@section('header')
-    
-@endsection
-
 @section('content')
 @auth
 <div class="container">
