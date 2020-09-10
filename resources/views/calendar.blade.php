@@ -1,5 +1,9 @@
 @extends('layout')
 
+@push('stylesheet')
+<link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
 <div class="container">
    <div class="row justify-content-center">
