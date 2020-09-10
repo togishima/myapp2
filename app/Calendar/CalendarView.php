@@ -58,6 +58,22 @@ class CalendarView {
     $html[] = '<th>日</th>';
     $html[] = '</tr>';
     $html[] = '</thead>';
+
+    $html[] = '<tbody>';
+
+    $weeks = $this->getWeeks();
+    foreach($weeks as $week) {
+      $html[] = '<tr class="'.$week->getClassName().'">';
+      $days = $week->getDays();
+      foreach($days as $day) {
+        $html[] = '<td class="'.$day->getClassName().'">';
+        $html[] = $day->render();
+        $html[] = '</td>';
+      }
+      $html[] = '</tr>';
+    }
+    $html[] = '</tbody>';
+
     $html[] = '</table>';
     $html[] = '</div>';
     return implode("", $html);

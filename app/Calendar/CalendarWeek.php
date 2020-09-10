@@ -2,7 +2,7 @@
 
 namespace App\Calendar;
 
-use Caron\Carbon;
+use Carbon\Carbon;
 
 Class CalendarWeek {
 
