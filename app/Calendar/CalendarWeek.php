@@ -42,7 +42,6 @@ Class CalendarWeek {
        //前の月、もしくは後ろの月の場合は空白を表示
        if($tmpDay->month != $this->carbon->month) {
          $day = new CalendarWeekBlankDay($tmpDay->copy());
-         $day->checkHoliday($setting);
          $days[] = $day;
          $tmpDay->addDay(1);
          continue;
@@ -50,6 +49,7 @@ Class CalendarWeek {
 
        //今月
        $day = new CalendarWeekDay($tmpDay->copy());
+       $day->checkHoliday($setting);
        $days[] = $day;
        //翌日に移動
        $tmpDay->addDay(1);
