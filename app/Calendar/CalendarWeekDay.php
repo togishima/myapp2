@@ -6,7 +6,7 @@ use App\Calendar\HolidaySetting;
 
 class CalendarWeekDay {
   protected $carbon;
-  protected $isHoliday = false;
+  protected $isHoliday_ = false;
 
   function __construct($date) {
     $this->carbon = new Carbon($date);
@@ -15,7 +15,7 @@ class CalendarWeekDay {
   function getClassName() {
     $classNames = ["day-" . strtolower($this->carbon->format("D"))];
 
-    if($this->isHoliday) {
+    if($this->isHoliday_) {
       $classNames[] = "day-holiday";
     }
 
@@ -31,7 +31,7 @@ class CalendarWeekDay {
   
   function checkHoliday(HolidaySetting $setting) {
     if($setting->isHoliday($this->carbon)){
-			$this->isHoliday = true;
+			$this->isHoliday_ = true;
 		}
   }
 }
