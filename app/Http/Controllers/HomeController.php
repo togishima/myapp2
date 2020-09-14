@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Calendar\CalendarView;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return redirect('welcome');
+        $calendar = new CalendarView(time());
+        return view('welcome', ["calendar" => $calendar]);
     }
 
     public function getLogout() {

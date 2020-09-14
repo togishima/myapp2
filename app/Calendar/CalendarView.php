@@ -3,6 +3,7 @@
 namespace App\Calendar;
 
 use Carbon\Carbon;
+use App\Calendar\HolidaySetting;
 
 class CalendarView {
 
@@ -44,6 +45,11 @@ class CalendarView {
   }
 
   function render() {
+    //Holiday Setting
+    $setting = HolidaySetting::firstOrNew();
+    $setting ->loadHoliday($this->carbon->format("Y"));
+
+    //table html
     $html = [];
     $html[] = '<div class="calendar">';
     $html[] = '<table class="table">';
@@ -64,7 +70,7 @@ class CalendarView {
     $weeks = $this->getWeeks();
     foreach($weeks as $week) {
       $html[] = '<tr class="'.$week->getClassName().'">';
-      $days = $week->getDays();
+      $days = $week->getDays($setting);
       foreach($days as $day) {
         $html[] = '<td class="'.$day->getClassName().'">';
         $html[] = $day->render();

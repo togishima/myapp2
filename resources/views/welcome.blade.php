@@ -1,12 +1,16 @@
 @extends('layout')
 
+@push('stylesheet')
+<link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
+@endpush
+
 @section('content')
 @auth
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-4 mt-2">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header">{{ __('Status') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,7 +19,21 @@
                         </div>
                     @endif
                     {{ __('ログイン中です') }}
+                </div>  
+			</div>
+        </div>
+        <div class="col-md-6 mt-2">
+            <div class="card">
+                <div class="card-header">
+                    {{ $calendar->getTitle() }}
                 </div>
+                <div class="card-body">
+                    {!! $calendar->render() !!}
+                </div>
+            </div>
+        </div>
+	</div>
+</div>
             </div>
         </div>
     </div>

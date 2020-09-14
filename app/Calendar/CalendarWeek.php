@@ -3,6 +3,7 @@
 namespace App\Calendar;
 
 use Carbon\Carbon;
+use App\Calendar\HolidaySetting;
 
 Class CalendarWeek {
 
@@ -24,7 +25,7 @@ Class CalendarWeek {
 	 * @return CalendarWeekDay[]
 	 */
 
-   function getDays() 
+   function getDays(HolidaySetting $setting) 
    {
      $days = [];
 
@@ -41,6 +42,7 @@ Class CalendarWeek {
        //前の月、もしくは後ろの月の場合は空白を表示
        if($tmpDay->month != $this->carbon->month) {
          $day = new CalendarWeekBlankDay($tmpDay->copy());
+         $day->checkHoliday($setting);
          $days[] = $day;
          $tmpDay->addDay(1);
          continue;

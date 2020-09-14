@@ -16,5 +16,4 @@ class CalendarWeekBlankDay extends CalendarWeekDay {
 	function render(){
 		return '';
 	}
-
 }

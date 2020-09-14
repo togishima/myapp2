@@ -7,6 +7,11 @@
 .day-sat .day{
 	color: blue;
 }
+.day-holiday .day {
+	color: red;
+	background-color: #FF7F50;
+}
+
 .calendar table td {	
 	padding: 3px;
 	border: solid 1px #999;
