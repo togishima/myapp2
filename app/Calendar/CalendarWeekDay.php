@@ -2,6 +2,7 @@
 
 namespace App\Calendar;
 use Carbon\Carbon;
+use App\Calendar\HolidaySetting;
 
 class CalendarWeekDay {
   protected $carbon;
