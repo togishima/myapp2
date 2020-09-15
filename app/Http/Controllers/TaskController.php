@@ -20,10 +20,9 @@ class TaskController extends Controller
 
     public function index()
     {
-        $auths = Auth::user();
         $tasks = Task::getSortableLinkWithPagination();
 
-        return view('tasks.index', ['tasks' => $tasks , 'auths' => $auths, ]);
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     /**

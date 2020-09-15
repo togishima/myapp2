@@ -4,6 +4,8 @@ namespace App\Calendar;
 
 use Carbon\Carbon;
 use App\Calendar\HolidaySetting;
+use App\Task;
+use Log;
 
 class CalendarView {
 
@@ -49,6 +51,9 @@ class CalendarView {
     $setting = HolidaySetting::firstOrNew();
     $setting ->loadHoliday($this->carbon->format("Y"));
 
+    //LoadTask
+    $task = Task::firstOrNew();
+
     //table html
     $html = [];
     $html[] = '<div class="calendar">';
@@ -70,7 +75,7 @@ class CalendarView {
     $weeks = $this->getWeeks();
     foreach($weeks as $week) {
       $html[] = '<tr class="'.$week->getClassName().'">';
-      $days = $week->getDays($setting);
+      $days = $week->getDays($setting, $task);
       foreach($days as $day) {
         $html[] = '<td class="'.$day->getClassName().'">';
         $html[] = $day->render();

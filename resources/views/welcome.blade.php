@@ -18,7 +18,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ __('ログイン中です') }}
+                    <p>{{ __('ログイン中です') }}</p>
+                    <dl>
+                        <dt>ユーザーID:</dt>
+                        <dd>{{ Auth::id() }}</dd>
+                        <dt>ユーザー名：</dt>
+                        <dd>{{ Auth::user()->name }}</dd>
+                    </dl>
                 </div>  
 			</div>
         </div>

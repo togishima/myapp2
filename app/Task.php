@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Log;
 
 class Task extends Model
 {
@@ -19,9 +20,18 @@ class Task extends Model
 
     public static function getSortableLinkWithPagination() {
         $user_id = Auth::id();
-        $task = self::where('user_id', $user_id)->sortable()->paginate(10);
+        $tasks = self::where('user_id', $user_id)->sortable()->paginate(5);
 
-        return $task;
+        return $tasks;
+    }
+
+    public static function getTaskByDate($date) {
+        $user_id = Auth::id();
+        $tasks = self::where('user_id', $user_id)
+        ->where('due_date', $date)
+        ->get();
+
+        return $tasks;
     }
 
     public function user()

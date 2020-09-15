@@ -4,6 +4,7 @@ namespace App\Calendar;
 
 use Carbon\Carbon;
 use App\Calendar\HolidaySetting;
+use App\Task;
 
 Class CalendarWeek {
 
@@ -25,7 +26,7 @@ Class CalendarWeek {
 	 * @return CalendarWeekDay[]
 	 */
 
-   function getDays(HolidaySetting $setting) 
+   function getDays(HolidaySetting $setting, Task $task) 
    {
      $days = [];
 
@@ -50,6 +51,7 @@ Class CalendarWeek {
        //今月
        $day = new CalendarWeekDay($tmpDay->copy());
        $day->checkHoliday($setting);
+       $day->checkTasks($task);
        $days[] = $day;
        //翌日に移動
        $tmpDay->addDay(1);
