@@ -23,13 +23,18 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function welcome()
+    {
+        return view('welcome');
+    }
+
     public function index()
     {
         $calendar = new CalendarView(time());
-        return view('welcome', ["calendar" => $calendar]);
+        return view('dashboard', ["calendar" => $calendar]);
     }
 
-    public function getLogout() {
+    public function logout() {
         Auth::logout();
         return redirect('/')->with('message', 'ログアウトしました');
     }

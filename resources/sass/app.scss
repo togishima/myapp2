@@ -1,9 +1,8 @@
-@charset 'utf-8';
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@import '_variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -16,3 +15,6 @@
 
 // Tempus Dominus
 @import '~tempusdominus-bootstrap-4/src/sass/tempusdominus-bootstrap-4-build';
+
+//Base
+@import '_base';

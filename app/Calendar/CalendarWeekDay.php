@@ -35,13 +35,15 @@ class CalendarWeekDay {
       $div[] = '<span class="holiday-name">' . $this->holidayName .'</span>';
     }
     if(count($this->tasks) !== 0) {
+      $div[] = '<ul class="tasks">';
       foreach($this->tasks as $task) {
         if ($task->completed == null) {
-          $div[] = '<p class="task"><a href="/tasks/'. $task->id. '">' . $task->subject .'</a></p>';
+          $div[] = '<li class="task"><a href="/tasks/'. $task->id. '">task#' . $task->id .'</a></li>';
         } else {
-          $div[] = '<p class="task text-muted">' . $task->subject .'(完了済)</p>';
+          $div[] = '<li class="task text-muted">task#' . $task->id .'(done)</li>';
         }
       }
+      $div[] ='</ul>';
     }
 
 		return '<div class="day"> ' . implode("", $div) . '</div>';

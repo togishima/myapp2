@@ -58,7 +58,11 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return view('tasks.show', compact('task'));
+        if ($task->user_id == Auth::id()) {
+            return view('tasks.show', compact('task'));
+        } else {
+            return redirect('home')->with('message', 'タスクへのアクセス権限がありませんでした');
+        }
     }
 
     /**
