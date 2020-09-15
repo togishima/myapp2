@@ -4,6 +4,7 @@ namespace App\Calendar;
 
 use Illuminate\Database\Eloquent\Model;
 use Yasumi\Yasumi;
+use Log;
 
 class HolidaySetting extends Model
 {
@@ -31,7 +32,17 @@ class HolidaySetting extends Model
     }
 
     function isHoliday($date) {
-        if(!$this->holidays)return false;
-        return $this->holidays->isHoliday($date);
+        if($this->holidays) {
+            return $this->holidays->isHoliday($date);
+        }
+        return false;
+    }
+
+    function getHolidayName($date) {
+        foreach($this->holidays as $holiday) {
+            if($holiday == $date) {
+                return $holiday->getName();
+            }
+        }
     }
 }

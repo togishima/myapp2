@@ -22,7 +22,7 @@
                 </div>  
 			</div>
         </div>
-        <div class="col-md-6 mt-2">
+        <div class="col-md-8 mt-2">
             <div class="card">
                 <div class="card-header">
                     {{ $calendar->getTitle() }}
@@ -33,10 +33,6 @@
             </div>
         </div>
 	</div>
-</div>
-            </div>
-        </div>
-    </div>
 </div>
 @else
 <div class="flex-center position-ref full-height">
