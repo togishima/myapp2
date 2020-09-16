@@ -20,7 +20,7 @@ class Task extends Model
 
     public static function getSortableLinkWithPagination() {
         $user_id = Auth::id();
-        $tasks = self::where('user_id', $user_id)->sortable()->paginate(5);
+        $tasks = self::where('user_id', $user_id)->orderBy('due_date')->sortable()->paginate(5);
 
         return $tasks;
     }
