@@ -13,7 +13,7 @@ class CreateHolidaySettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('holiday_settings', function (Blueprint $table) {
+        Schema::create('holiday_setting', function (Blueprint $table) {
             $table->id();
             $table->integer("user_id");
             $table->string("date_key", 8);

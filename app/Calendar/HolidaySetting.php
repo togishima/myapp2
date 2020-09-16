@@ -12,7 +12,7 @@ class HolidaySetting extends Model
     const NIGHT_SHIFT = 2;
     const HOLIDAY = 3;
 
-    protected $table = "holiday_settings";
+    protected $table = "holiday_setting";
 
     protected $fillable = [
         "date_flag",
