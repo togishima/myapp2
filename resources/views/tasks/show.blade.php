@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 @section('header')
 <div>
   <h1>タスク詳細 #{{$task->id}}</h1>
