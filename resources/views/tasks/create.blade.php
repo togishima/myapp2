@@ -48,7 +48,6 @@
         <a class="btn btn-link pull-right" href="{{ route('tasks.index') }}"><i class="fas fa-backward"></i>戻る</a>
       </div>
     </form>
-
   </div>
 </div>
 @endsection 
