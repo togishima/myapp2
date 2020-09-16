@@ -28,9 +28,14 @@
 
       <tbody>
         @foreach($tasks as $task)
-        <tr>
+        <tr
+        @if($task->completed == 1)
+          style="background: lightgrey;"        
+        @elseif($task->due_date < date("Y-m-d")) 
+          style="background: #ffcccc;"
+        @endif 
+        >
           <td class="text-center"><strong>{{$task->id}}</strong></td>
-
           <td>{{$task->subject}}</td>
           <td>{{$task->description}}</td>
           <td>

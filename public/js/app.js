@@ -73785,10 +73785,7 @@ window.moment = moment__WEBPACK_IMPORTED_MODULE_0___default.a;
 __webpack_require__(/*! tempusdominus-bootstrap-4 */ "./node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.js");
 
 $('.datetimepicker').datetimepicker({
-  icons: {
-    // Font Awesome 5には「fa-clock-o」がなくなっているので指定する
-    time: 'far fa-clock'
-  },
+  locale: 'ja',
   format: 'YYYY-MM-DD'
 });
 

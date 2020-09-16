@@ -1,5 +1,19 @@
 @extends('layouts.app')
 
+@push('stylesheet')
+<style>
+  .datepicker-days th.dow:nth-last-child(2),
+    .datepicker-days td:nth-last-child(2) {
+        color: #00f;
+    }
+    .datepicker-days th.dow:last-child,
+    .datepicker-days td:last-child {
+        color: #f00;
+    }
+</style>
+    
+@endpush
+
 @section('header')
 <div class="page-header">
   <h1><i class="fas fa-plus"></i> タスクの新規作成 </h1>
@@ -48,7 +62,6 @@
         <a class="btn btn-link pull-right" href="{{ route('tasks.index') }}"><i class="fas fa-backward"></i>戻る</a>
       </div>
     </form>
-
   </div>
 </div>
 @endsection 
