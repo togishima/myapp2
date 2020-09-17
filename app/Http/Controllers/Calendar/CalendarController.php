@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Calendar;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Calendar\CalendarView;
 
@@ -15,12 +16,12 @@ class CalendarController extends Controller
     public function show() 
     {
         $calendar = new CalendarView(time());
-        return view('calendar', ["calendar" => $calendar]);
+        return view('calendar.calendar', ["calendar" => $calendar]);
     }
     public function specificMonth(Request $request, $year, $month)
     {
         $date = $year. '-' . $month .'-01';
         $calendar = new CalendarView($date);
-        return view('calendar', ["calendar" => $calendar]);
+        return view('calendar.calendar', ["calendar" => $calendar]);
     }
 }

@@ -27,10 +27,12 @@ Route::resource('tasks', 'TaskController');
 Auth::routes(['verify'=>true]);
 
 //カレンダー
-Route::get('/calendar', 'CalendarController@show');
-Route::get('/calendar/{year}/{month}', 'CalendarController@specificMonth')
+Route::get('/calendar', 'Calendar\CalendarController@show');
+Route::get('/calendar/{year}/{month}', 'Calendar\Controller@specificMonth')
       ->where(['year'=> '[0-9]+', 'month' => '[0-9]+']);
-
+//シフト設定画面
+Route::get('/calendar/holiday_setting', 'Calendar\HolidaySettingController@form')->name("holiday_setting");
+Route::post('/calendar/holiday_setting', 'Calendar\HolidaySettingController@update')->name("update_holiday_setting");
 
 
 

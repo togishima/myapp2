@@ -4,17 +4,22 @@ namespace App\Http\Controllers\Calendar;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Calendar\CalendarView;
 use App\Calendar\HolidaySetting;
 
 class HolidaySettingController extends Controller
 {
-    function form() {
+    function form() 
+    {
+        $calendar = new CalendarView(time());
         $setting = HolidaySetting::firstOrNew();
-        return view("calendar/holiday_setting_form", [
+
+        return view("calendar.holiday_setting_form", [
+            "calendar" => $calendar,
             "setting" => $setting,
             "FLAG_DAYSHIFT" => HolidaySetting::DAY_SHIFT,
             "FLAG_NIGHTSHIFT" => HolidaySetting::NIGHT_SHIFT,
-            "FLAG_HOLIDAY" => HolidaySetting::HOLIDAY,
+            "FLAG_DAYOFF" => HolidaySetting::DAY_OFF,
         ]);
     }
 
