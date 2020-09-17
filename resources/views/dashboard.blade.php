@@ -2,10 +2,6 @@
 
 @push('stylesheet')
 <link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
-<style>
-  .holiday-name {margin-left: 5px;}
-  .tasks {list-style: none; padding-left: 5px;}
-</style>
 @endpush
 
 @section('content')
@@ -14,7 +10,7 @@
     <div class="col-md-9 mt-2">
         <div class="card">
             <div class="card-header">
-                {{ $calendar->getTitle() }}
+              今月の予定
             </div>
             <div class="card-body">
                 {!! $calendar->render() !!}

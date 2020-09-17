@@ -17,4 +17,10 @@ class CalendarController extends Controller
         $calendar = new CalendarView(time());
         return view('calendar', ["calendar" => $calendar]);
     }
+    public function specificMonth(Request $request, $year, $month)
+    {
+        $date = $year. '-' . $month .'-01';
+        $calendar = new CalendarView($date);
+        return view('calendar', ["calendar" => $calendar]);
+    }
 }

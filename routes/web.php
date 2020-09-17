@@ -28,6 +28,8 @@ Auth::routes(['verify'=>true]);
 
 //カレンダー
 Route::get('/calendar', 'CalendarController@show');
+Route::get('/calendar/{year}/{month}', 'CalendarController@specificMonth')
+      ->where(['year'=> '[0-9]+', 'month' => '[0-9]+']);
 
 
 

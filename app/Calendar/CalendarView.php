@@ -16,7 +16,18 @@ class CalendarView {
   }
 
   public function getTitle() {
-    return $this->carbon->format('Y年n月');
+    $title = $this->carbon->format('Y年n月');
+    return $title;
+  }
+
+  public function getPrevMonth() {
+    $prev = $this->carbon->copy()->subMonthsNoOverflow()->format('Y/m');
+    return $prev;
+  }
+
+  public function getNextMonth(){
+    $next = $this->carbon->copy()->addMonthsNoOverflow()->format('Y/m');
+    return $next;
   }
 
   protected function getWeeks() {
