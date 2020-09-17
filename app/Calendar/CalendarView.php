@@ -8,8 +8,7 @@ use App\Task;
 use Log;
 
 class CalendarView {
-
-  private $carbon;
+  protected $carbon;
 
   function __construct($date) {
     $this->carbon = new Carbon($date);
@@ -39,8 +38,7 @@ class CalendarView {
     $lastDay = $this->carbon->copy()->lastOfMonth();
 
     //１週目
-    $week = new CalendarWeek($firstDay->copy());
-    $weeks[] = $week;
+    $weeks[] = $this->getWeek($firstDay->copy());
 
     //作業用の日
     $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();
@@ -48,14 +46,20 @@ class CalendarView {
     //
     while($tmpDay->lte($lastDay)) {
       //週カレンダーViewを作成
-      $week = new CalendarWeek($tmpDay, count($weeks));
-      $weeks[] = $week;
+      $weeks[] = $this->getWeek($tmpDay->copy(), count($weeks));
 
       //次の週+=7日
       $tmpDay->addDay(7);
     }
     return $weeks;
   }
+
+  /**
+	 * @return CalendarWeek
+	 */
+	protected function getWeek(Carbon $date, $index = 0){
+		return new CalendarWeek($date, $index);
+	}
 
   function render() {
     //Holiday Setting
