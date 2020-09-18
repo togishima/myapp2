@@ -28,7 +28,7 @@ Auth::routes(['verify'=>true]);
 
 //カレンダー
 Route::get('/calendar', 'Calendar\CalendarController@show');
-Route::get('/calendar/{year}/{month}', 'Calendar\Controller@specificMonth')
+Route::get('/calendar/{year}/{month}', 'Calendar\CalendarController@specificMonth')
       ->where(['year'=> '[0-9]+', 'month' => '[0-9]+']);
 //シフト設定画面
 Route::get('/calendar/holiday_setting', 'Calendar\HolidaySettingController@form')->name("holiday_setting");

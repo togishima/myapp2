@@ -28,7 +28,7 @@
 
     <form action="{{ route('tasks.store') }}" method="POST">
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-      <input type="hidden" name="user_id" value="{{ $user_id }}">
+      <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
       <div class="form-group">
         <label for="subject-field">件名</label>

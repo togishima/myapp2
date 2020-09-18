@@ -49,13 +49,19 @@ Class CalendarWeek {
        }
 
        //今月
-       $day = new CalendarWeekDay($tmpDay->copy());
-       $day->checkHoliday($setting);
-       $day->checkTasks($task);
-       $days[] = $day;
+       $days[] = $this->getDay($tmpDay->copy(), $setting, $task);
        //翌日に移動
        $tmpDay->addDay(1);
      }
      return $days;
    }
+   /**
+	 * @return CalendarWeekDay
+	 */
+	function getDay(Carbon $date, HolidaySetting $setting, Task $task){
+		$day = new CalendarWeekDay($date);
+    $day->checkHoliday($setting);
+    $day->checkTasks($task);
+		return $day;
+	}
 }

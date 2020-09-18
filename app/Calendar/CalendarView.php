@@ -9,6 +9,7 @@ use Log;
 
 class CalendarView {
   protected $carbon;
+  protected $holidaySettings = [];
 
   function __construct($date) {
     $this->carbon = new Carbon($date);
@@ -68,6 +69,7 @@ class CalendarView {
 
     //LoadTask
     $task = Task::firstOrNew();
+    $this->holidaySettings = HolidaySetting::getHolidaySettingWithMonth($this->carbon->format("Ym"));
 
     //table html
     $html = [];
@@ -92,9 +94,7 @@ class CalendarView {
       $html[] = '<tr class="'.$week->getClassName().'">';
       $days = $week->getDays($setting, $task);
       foreach($days as $day) {
-        $html[] = '<td class="'.$day->getClassName().'">';
-        $html[] = $day->render();
-        $html[] = '</td>';
+        $html[] = $this->renderDay($day);
       }
       $html[] = '</tr>';
     }
@@ -102,6 +102,14 @@ class CalendarView {
 
     $html[] = '</table>';
     $html[] = '</div>';
+    return implode("", $html);
+  }
+  protected function renderDay(CalendarWeekDay $day)
+  {
+    $html = [];
+    $html[] = '<td class="'.$day->getClassName().'">';
+    $html[] = $day->render();
+    $html[] = '</td>';
     return implode("", $html);
   }
 }

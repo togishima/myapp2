@@ -3,7 +3,6 @@
 <link href="{{ asset('css/calendar.css') }}" rel="stylesheet">
 @endpush
 @section('content')
-<div class="container">
   <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
@@ -16,6 +15,7 @@
           @endif
           <form method="post" action="{{ route('update_holiday_setting') }}">
             @csrf
+            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             <div class="card-body">
               {!! $calendar->render() !!}
               <div class="text-center">
@@ -27,5 +27,4 @@
       </div>
     </div>
   </div>
-</div>
 @endsection

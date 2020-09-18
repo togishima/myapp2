@@ -25,6 +25,14 @@ class CalendarWeekDay {
     return implode(" ", $classNames);
   }
 
+  function getDateKey() {
+    return $this->carbon->format("Ymd");
+  }
+
+  function setHoliday($flag) {
+    $this->date_flag = $flag;
+  }
+
   /**
 	 * @return 
 	 */

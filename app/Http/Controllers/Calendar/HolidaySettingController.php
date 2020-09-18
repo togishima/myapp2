@@ -4,14 +4,19 @@ namespace App\Http\Controllers\Calendar;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Calendar\CalendarView;
+use App\Calendar\Form\CalendarFormView;
 use App\Calendar\HolidaySetting;
+use Log;
 
 class HolidaySettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified');
+    }
     function form() 
     {
-        $calendar = new CalendarView(time());
+        $calendar = new CalendarFormView(time());
         $setting = HolidaySetting::firstOrNew();
 
         return view("calendar.holiday_setting_form", [
@@ -24,11 +29,13 @@ class HolidaySettingController extends Controller
     }
 
     function update(Request $request) {
-        $setting = HolidaySetting::firstOrNew();
+        $input = $request->get("holiday_setting");
+        $ym = $request->input("ym");
+        $user_id = $request->get("user_id");
 
-        $setting->update($request->all());
+        HolidaySetting::updateHolidaySettingsWithMonth($ym, $input, $user_id);
         return redirect()
-        ->action("Calendar\HolidaySettingController@form")
-        ->withStatus("保存しました");
+            ->action("Calendar\HolidaySettingController@form")
+            ->withStatus("保存しました");
     }
 }

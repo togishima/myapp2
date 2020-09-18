@@ -16,7 +16,7 @@ class CreateHolidaySettingsTable extends Migration
         Schema::create('holiday_setting', function (Blueprint $table) {
             $table->id();
             $table->integer("user_id");
-            $table->string("date_key", 8);
+            $table->string("date_key", 8)->unique();
             $table->integer("date_flag")->default(0);
             $table->string("comment")->nullable();
             $table->timestamps();
