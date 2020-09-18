@@ -37,14 +37,12 @@ class CalendarView {
     $firstDay = $this->carbon->copy()->firstOfMonth();
     //末日
     $lastDay = $this->carbon->copy()->lastOfMonth();
-
     //１週目
     $weeks[] = $this->getWeek($firstDay->copy());
-
     //作業用の日
     $tmpDay = $firstDay->copy()->addDay(7)->startOfWeek();
 
-    //
+    //1週間単位で描画
     while($tmpDay->lte($lastDay)) {
       //週カレンダーViewを作成
       $weeks[] = $this->getWeek($tmpDay->copy(), count($weeks));
@@ -69,6 +67,8 @@ class CalendarView {
 
     //LoadTask
     $task = Task::firstOrNew();
+
+    //Load HolidaySetting
     $this->holidaySettings = HolidaySetting::getHolidaySettingWithMonth($this->carbon->format("Ym"));
 
     //table html

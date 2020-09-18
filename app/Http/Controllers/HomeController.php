@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Calendar\CalendarView;
+use App\Calendar\Output\CalendarOutputView;
 
 class HomeController extends Controller
 {
@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        $calendar = new CalendarView(time());
+        $calendar = new CalendarOutputView(time());
         return view('dashboard', ["calendar" => $calendar]);
     }
 

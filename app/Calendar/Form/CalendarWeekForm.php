@@ -11,7 +11,7 @@ class CalendarWeekForm extends CalendarWeek {
   /**
    * HolidaySetting[]
    */
-  public $workShifts = [];
+  public $holidaySettings = [];
 
 
   /**
@@ -20,7 +20,7 @@ class CalendarWeekForm extends CalendarWeek {
   function getDay(Carbon $date, HolidaySetting $setting, Task $task){
 		$day = new CalendarWeekDayForm($date);
     $day->checkHoliday($setting);
-    $day->checkTasks($task);
+    //$day->checkTasks($task);
 
     if(isset($this->holidaySettings[$day->getDateKey()])) {
       $day->holidaySetting = $this->holidaySettings[$day->getDateKey()];

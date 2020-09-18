@@ -61,7 +61,6 @@ Class CalendarWeek {
 	function getDay(Carbon $date, HolidaySetting $setting, Task $task){
 		$day = new CalendarWeekDay($date);
     $day->checkHoliday($setting);
-    $day->checkTasks($task);
 		return $day;
 	}
 }

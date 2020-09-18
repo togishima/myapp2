@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Calendar;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Calendar\CalendarView;
+use App\Calendar\Output\CalendarOutputView;
 
 class CalendarController extends Controller
 {
@@ -15,13 +15,13 @@ class CalendarController extends Controller
     
     public function show() 
     {
-        $calendar = new CalendarView(time());
+        $calendar = new CalendarOutputView(time());
         return view('calendar.calendar', ["calendar" => $calendar]);
     }
     public function specificMonth(Request $request, $year, $month)
     {
         $date = $year. '-' . $month .'-01';
-        $calendar = new CalendarView($date);
+        $calendar = new CalendarOutputView($date);
         return view('calendar.calendar', ["calendar" => $calendar]);
     }
 }

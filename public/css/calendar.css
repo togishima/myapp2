@@ -11,6 +11,13 @@
 	color: red;
 }
 
+.calendar .table {
+	table-layout: fixed;
+}
+.calendar .table .comment{
+	font-size: small;
+}
+
 .calendar table td {	
 	padding: 3px;
 	border: solid 1px #999;
